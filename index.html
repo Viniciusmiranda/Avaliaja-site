@@ -1523,58 +1523,62 @@
             document.querySelector('.shape-layer-4').style.transform = `translateY(-${scrollY * 0.15}px)`;
         });
 
-        // Dynamic Social Proof Notifications
-        const reviews = [
-            { name: "Carlos S.", city: "São Paulo", state: "SP" },
-            { name: "Ana M.", city: "Rio de Janeiro", state: "RJ" },
-            { name: "Roberto O.", city: "Belo Horizonte", state: "MG" },
-            { name: "Fernanda L.", city: "Curitiba", state: "PR" },
-            { name: "Ricardo P.", city: "Porto Alegre", state: "RS" },
-            { name: "Juliana T.", city: "Salvador", state: "BA" },
-            { name: "Marcos A.", city: "Recife", state: "PE" },
-            { name: "Beatriz C.", city: "Brasília", state: "DF" },
-            { name: "Eduardo V.", city: "Fortaleza", state: "CE" },
-            { name: "Camila R.", city: "Florianópolis", state: "SC" }
-        ];
+        // Dynamic Social Proof Notifications - Wrapped in DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const reviews = [
+                { name: "Carlos S.", city: "São Paulo", state: "SP" },
+                { name: "Ana M.", city: "Rio de Janeiro", state: "RJ" },
+                { name: "Roberto O.", city: "Belo Horizonte", state: "MG" },
+                { name: "Fernanda L.", city: "Curitiba", state: "PR" },
+                { name: "Ricardo P.", city: "Porto Alegre", state: "RS" },
+                { name: "Juliana T.", city: "Salvador", state: "BA" },
+                { name: "Marcos A.", city: "Recife", state: "PE" },
+                { name: "Beatriz C.", city: "Brasília", state: "DF" },
+                { name: "Eduardo V.", city: "Fortaleza", state: "CE" },
+                { name: "Camila R.", city: "Florianópolis", state: "SC" }
+            ];
 
-        const notification = document.getElementById('review-notification');
-        const notifName = document.getElementById('notif-name');
-        const notifLocation = document.getElementById('notif-location');
-        const notifTime = document.getElementById('notif-time');
+            const notification = document.getElementById('review-notification');
+            const notifName = document.getElementById('notif-name');
+            const notifLocation = document.getElementById('notif-location');
+            const notifTime = document.getElementById('notif-time');
 
-        function showNotification() {
-            // Select random review
-            const review = reviews[Math.floor(Math.random() * reviews.length)];
+            if (!notification) return;
 
-            // Random time between 2 min and 5 hours ago (simulated simplistic logic or just "Agora" for immediate effect)
-            // User asked for "data e hora atual", so let's use actual formatted time
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+            function showNotification() {
+                // Select random review
+                const review = reviews[Math.floor(Math.random() * reviews.length)];
 
-            notifName.textContent = review.name;
-            notifLocation.textContent = `${review.city} - ${review.state}`;
-            notifTime.textContent = timeString;
+                // Random time between 2 min and 5 hours ago (simulated simplistic logic or just "Agora" for immediate effect)
+                // User asked for "data e hora atual", so let's use actual formatted time
+                const now = new Date();
+                const timeString = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
 
-            // Show
-            notification.classList.add('active');
+                notifName.textContent = review.name;
+                notifLocation.textContent = `${review.city} - ${review.state}`;
+                notifTime.textContent = timeString;
 
-            // Hide after 4 seconds
-            setTimeout(() => {
-                notification.classList.remove('active');
-                scheduleNextNotification();
-            }, 4000);
-        }
+                // Show
+                notification.classList.add('active');
 
-        function scheduleNextNotification() {
-            // Random interval between 2s, 5s, 6s (approx range 2000-6000ms)
-            const delays = [2000, 5000, 6000];
-            const delay = delays[Math.floor(Math.random() * delays.length)];
+                // Hide after 4 seconds
+                setTimeout(() => {
+                    notification.classList.remove('active');
+                    scheduleNextNotification();
+                }, 4000);
+            }
 
-            setTimeout(showNotification, delay);
-        }
+            function scheduleNextNotification() {
+                // Random interval between 2s, 5s, 6s (approx range 2000-6000ms)
+                const delays = [2000, 5000, 6000];
+                const delay = delays[Math.floor(Math.random() * delays.length)];
 
-        // Start loop
-        setTimeout(scheduleNextNotification, 2000);
+                setTimeout(showNotification, delay);
+            }
+
+            // Start loop
+            setTimeout(scheduleNextNotification, 2000);
+        });
     </script>
     <!-- Review Notification -->
     <div id="review-notification" class="review-notification">
