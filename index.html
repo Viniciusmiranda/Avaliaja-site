@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avalia Já</title>
+    <link rel="icon" href="images/icon.ico" type="image/x-icon">
     <style>
         * {
             margin: 0;
@@ -772,70 +773,77 @@
         /* Responsive */
         @media (max-width: 768px) {
             .menu-toggle {
-                display: flex;
-                z-index: 1001;
-                cursor: pointer;
+                display: none !important;
+                /* Hide hamburger menu on mobile as requested */
             }
 
+            .mobile-login-btn {
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(135deg, var(--primary), var(--secondary));
+                color: white;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                text-decoration: none;
+                box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+                transition: all 0.3s ease;
+            }
+
+            /* Hide nav links completely on mobile */
             .nav-links {
-                position: fixed;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(15, 23, 42, 0.98);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                padding: 2rem;
-                gap: 1.5rem;
-                transform: translateX(100%);
-                transition: transform 0.3s ease;
+                display: none !important;
             }
 
-            .nav-links.active {
-                transform: translateX(0);
-            }
+            /* Removed orphaned properties */
+        }
 
-            .cta-button {
-                display: none;
-            }
+        .nav-links.active {
+            transform: translateX(0);
+        }
 
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
+        .cta-button {
+            display: none;
+        }
 
-            .hero-content p {
-                font-size: 1.2rem;
-            }
+        .hero-content h1 {
+            font-size: 2.5rem;
+        }
 
-            .hero-buttons {
-                flex-direction: column;
-            }
+        .hero-content p {
+            font-size: 1.2rem;
+        }
 
-            .section-title {
-                font-size: 2rem;
-            }
+        .hero-buttons {
+            flex-direction: column;
+        }
 
-            .pricing-card.featured {
-                transform: scale(1);
-            }
+        .section-title {
+            font-size: 2rem;
+        }
 
-            .pricing-card.featured:hover {
-                transform: translateY(-10px);
-            }
+        .pricing-card.featured {
+            transform: scale(1);
+        }
 
-            .logos-slide {
-                animation-duration: 15s;
-            }
+        .pricing-card.featured:hover {
+            transform: translateY(-10px);
+        }
 
-            .company-logo-img {
-                margin: 0 20px;
-            }
+        .logos-slide {
+            animation-duration: 15s;
+        }
 
-            /* Ensure form consistency on mobile */
-            .form-group input,
-            .form-group textarea {
-                width: 100%;
-            }
+        .company-logo-img {
+            margin: 0 20px;
+        }
+
+        /* Ensure form consistency on mobile */
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+        }
         }
 
         @media (max-width: 480px) {
@@ -1032,6 +1040,15 @@
                 <li><a href="#contact">Contato</a></li>
             </ul>
             <a href="login.html" class="cta-button">Entrar</a>
+            <!-- Mobile Login Icon -->
+            <a href="login.html" class="mobile-login-btn" style="display: none;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                    <polyline points="10 17 15 12 10 7"></polyline>
+                    <line x1="15" y1="12" x2="3" y2="12"></line>
+                </svg>
+            </a>
             <div class="menu-toggle" id="menuToggle">
                 <span></span>
                 <span></span>
@@ -1309,7 +1326,7 @@
             const company = document.getElementById('company').value;
             const message = document.getElementById('message').value;
 
-            const whatsappMessage = `👋Olá me chamo *${name}* sou ${role}* da *${company}*\n--------------------\n*Minha Dúvida:* ${message}`;
+            const whatsappMessage = `👋Olá me chamo *${name}* sou *${role}* da *${company}*\n--------------------\n*Minha Dúvida:* ${message}`;
             const encodedMessage = encodeURIComponent(whatsappMessage);
             const whatsappUrl = `https://wa.me/558183625287?text=${encodedMessage}`;
 
