@@ -1551,22 +1551,30 @@
             ];
 
             const realReviews = [
-                { text: "Atendimento excelente, resolveram meu problema na hora!", rating: 5, emoji: "�" },
-                { text: "Amei a facilidade de uso. Recomendo demais!", rating: 5, emoji: "🤩" },
-                { text: "Muito bom, só a entrega que demorou um pouquinho.", rating: 4, emoji: "🙂" },
-                { text: "Qualidade impecável, superou minhas expectativas.", rating: 5, emoji: "🌟" },
-                { text: "Suporte técnico muito atencioso e rápido.", rating: 5, emoji: "👏" },
-                { text: "O produto é bom, mas o site poderia ser mais rápido.", rating: 3, emoji: "�" },
-                { text: "Melhor investimento que fiz para minha empresa.", rating: 5, emoji: "🚀" },
-                { text: "Gostei bastante, voltarei a comprar.", rating: 4, emoji: "�" },
-                { text: "Parabéns pela dedicação e profissionalismo.", rating: 5, emoji: "🤝" },
-                { text: "Estou muito satisfeita com o resultado final!", rating: 5, emoji: "💖" }
+                // Positive (4-5 stars)
+                { text: "Atendimento excelente, resolveram meu problema na hora!", rating: 5, emoji: "🤩", attendant: "Mariana" },
+                { text: "Amei a facilidade de uso. Recomendo demais!", rating: 5, emoji: "🤩", attendant: "Carlos" },
+                { text: "Muito bom, só a entrega que demorou um pouquinho.", rating: 4, emoji: "🙂", attendant: "Fernanda" },
+                { text: "Qualidade impecável, superou minhas expectativas.", rating: 5, emoji: "🤩", attendant: "Roberto" },
+                { text: "Suporte técnico muito atencioso e rápido.", rating: 5, emoji: "🤩", attendant: "Ana" },
+                { text: "Melhor investimento que fiz para minha empresa.", rating: 5, emoji: "🤩", attendant: "Ricardo" },
+                { text: "Gostei bastante, voltarei a comprar.", rating: 4, emoji: "😄", attendant: "Juliana" },
+                { text: "Parabéns pela dedicação e profissionalismo.", rating: 5, emoji: "🤩", attendant: "Marcos" },
+                { text: "Estou muito satisfeita com o resultado final!", rating: 5, emoji: "🤩", attendant: "Beatriz" },
+
+                // Negative (1-2 stars)
+                { text: "Demorou muito para responder, achei um descaso.", rating: 1, emoji: "🚨", attendant: "Pedro" },
+                { text: "Não gostei do atendimento, foi rude comigo.", rating: 2, emoji: "☹️", attendant: "Lucas" },
+                { text: "O sistema travou várias vezes, frustrante.", rating: 1, emoji: "🚨", attendant: "Carla" },
+                { text: "Esperava mais, não resolveu meu problema.", rating: 2, emoji: "☹️", attendant: "Felipe" },
+                { text: "Não recomendo, suporte muito fraco.", rating: 1, emoji: "🚨", attendant: "Vanessa" }
             ];
 
             const notification = document.getElementById('review-notification');
             const notifEmoji = document.getElementById('notif-emoji');
             const notifStars = document.getElementById('notif-stars');
             const notifMessage = document.getElementById('notif-message');
+            const notifAttendant = document.getElementById('notif-attendant');
             const notifLocation = document.getElementById('notif-location');
             const notifTime = document.getElementById('notif-time');
 
@@ -1589,6 +1597,7 @@
                 if (notifEmoji) notifEmoji.textContent = review.emoji;
                 if (notifStars) notifStars.textContent = stars;
                 if (notifMessage) notifMessage.textContent = review.text;
+                if (notifAttendant) notifAttendant.textContent = `Atendente: ${review.attendant}`;
                 if (notifLocation) notifLocation.textContent = `${location.city} - ${location.state}`;
                 if (notifTime) notifTime.textContent = timeString;
 
@@ -1621,6 +1630,9 @@
             <div class="review-stars" id="notif-stars">⭐⭐⭐⭐⭐</div>
             <div class="review-message" id="notif-message">Uau! Muito obrigado pelo carinho! 💙</div>
             <div class="review-meta">
+                <div id="notif-attendant"
+                    style="color: #cbd5e1; font-weight: 500; font-size: 0.8rem; margin-bottom: 2px;">Atendente: ...
+                </div>
                 <span id="notif-location">Cidade - UF</span> • <small id="notif-time">00:00</small>
             </div>
         </div>
