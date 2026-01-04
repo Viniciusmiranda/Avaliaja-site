@@ -773,11 +773,13 @@
         @media (max-width: 768px) {
             .menu-toggle {
                 display: flex;
+                z-index: 1001;
+                cursor: pointer;
             }
 
             .nav-links {
                 position: fixed;
-                top: 80px;
+                top: 100%;
                 left: 0;
                 right: 0;
                 background: rgba(15, 23, 42, 0.98);
@@ -819,6 +821,20 @@
 
             .pricing-card.featured:hover {
                 transform: translateY(-10px);
+            }
+
+            .logos-slide {
+                animation-duration: 15s;
+            }
+
+            .company-logo-img {
+                margin: 0 20px;
+            }
+
+            /* Ensure form consistency on mobile */
+            .form-group input,
+            .form-group textarea {
+                width: 100%;
             }
         }
 
@@ -1029,7 +1045,8 @@
         <div class="hero-content">
             <h1>Transforme Feedback em Qualidade Operacional</h1>
             <p>Plataforma para gestão de avaliações de atendimento com dashboards inteligentes e relatórios
-                detalhados. Monitore atendentes em tempo real, receba alertas críticos e tome decisões baseadas em dados.</p>
+                detalhados. Monitore atendentes em tempo real, receba alertas críticos e tome decisões baseadas em
+                dados.</p>
             <div class="hero-buttons">
                 <a href="#pricing" class="btn-primary">Experimente Grátis</a>
                 <a href="#how-it-works" class="btn-secondary">Saiba Mais</a>
@@ -1120,14 +1137,16 @@
         <h2 class="section-title">Prova Social</h2>
         <div class="logos-container">
             <div class="logos-slide">
-                <a href="https://www.instagram.com/ladeslaboratorio/" target="_blank" title="Visitar Lades"><img src="images/prova-social/Lades.png" alt="Lades"
-                        class="company-logo-img logo-lades"></a>
-                <a href="https://www.instagram.com/nacionalassistencia24h/" target="_blank" title="Visitar Nacional"><img src="images/prova-social/nacional.png"
-                        alt="Nacional" class="company-logo-img logo-nacional"></a>
+                <a href="https://www.instagram.com/ladeslaboratorio/" target="_blank" title="Visitar Lades"><img
+                        src="images/prova-social/Lades.png" alt="Lades" class="company-logo-img logo-lades"></a>
+                <a href="https://www.instagram.com/nacionalassistencia24h/" target="_blank"
+                    title="Visitar Nacional"><img src="images/prova-social/nacional.png" alt="Nacional"
+                        class="company-logo-img logo-nacional"></a>
                 <a href="#" target="_blank" title="Visitar Artifoto"><img src="images/prova-social/artifoto.png"
                         alt="Artifoto" class="company-logo-img logo-artifoto"></a>
-                <a href="https://www.instagram.com/panchess.of/" target="_blank" title="Visitar Panchess"><img src="images/prova-social/panchess.png"
-                        alt="Panchess" class="company-logo-img logo-panchess"></a>
+                <a href="https://www.instagram.com/panchess.of/" target="_blank" title="Visitar Panchess"><img
+                        src="images/prova-social/panchess.png" alt="Panchess"
+                        class="company-logo-img logo-panchess"></a>
                 <a href="#" target="_blank" title="Visitar Rei da Oparme"><img src="images/prova-social/reidaoparme.png"
                         alt="Rei da Oparme" class="company-logo-img logo-reidaoparme"></a>
                 <a href="#" target="_blank" title="Visitar VM Informática"><img
@@ -1137,14 +1156,16 @@
                         alt="VM MotoHelp" class="company-logo-img logo-vmmotohelp"></a>
             </div>
             <div class="logos-slide">
-                <a href="https://www.instagram.com/ladeslaboratorio/" target="_blank" title="Visitar Lades"><img src="images/prova-social/Lades.png" alt="Lades"
-                        class="company-logo-img logo-lades"></a>
-                <a href="https://www.instagram.com/nacionalassistencia24h/" target="_blank" title="Visitar Nacional"><img src="images/prova-social/nacional.png"
-                        alt="Nacional" class="company-logo-img logo-nacional"></a>
+                <a href="https://www.instagram.com/ladeslaboratorio/" target="_blank" title="Visitar Lades"><img
+                        src="images/prova-social/Lades.png" alt="Lades" class="company-logo-img logo-lades"></a>
+                <a href="https://www.instagram.com/nacionalassistencia24h/" target="_blank"
+                    title="Visitar Nacional"><img src="images/prova-social/nacional.png" alt="Nacional"
+                        class="company-logo-img logo-nacional"></a>
                 <a href="#" target="_blank" title="Visitar Artifoto"><img src="images/prova-social/artifoto.png"
                         alt="Artifoto" class="company-logo-img logo-artifoto"></a>
-                <a href="https://www.instagram.com/panchess.of/" target="_blank" title="Visitar Panchess"><img src="images/prova-social/panchess.png"
-                        alt="Panchess" class="company-logo-img logo-panchess"></a>
+                <a href="https://www.instagram.com/panchess.of/" target="_blank" title="Visitar Panchess"><img
+                        src="images/prova-social/panchess.png" alt="Panchess"
+                        class="company-logo-img logo-panchess"></a>
                 <a href="#" target="_blank" title="Visitar Rei da Oparme"><img src="images/prova-social/reidaoparme.png"
                         alt="Rei da Oparme" class="company-logo-img logo-reidaoparme"></a>
                 <a href="#" target="_blank" title="Visitar VM Informática"><img
