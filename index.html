@@ -1063,12 +1063,13 @@
             position: fixed;
             bottom: 20px;
             left: 20px;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(15, 23, 42, 0.95);
+            /* Dark background */
             backdrop-filter: blur(10px);
             padding: 15px 20px;
             border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 1000;
             display: flex;
             align-items: center;
@@ -1077,7 +1078,8 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            max-width: 320px;
+            max-width: 350px;
+            color: #fff;
         }
 
         .review-notification.active {
@@ -1086,16 +1088,23 @@
             visibility: visible;
         }
 
-        .review-avatar {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
+        .review-emoji {
+            font-size: 2.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
 
         .review-content {
@@ -1103,21 +1112,24 @@
             flex-direction: column;
         }
 
-        .review-title {
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--dark);
-        }
-
         .review-stars {
             color: #FFD700;
-            font-size: 0.8rem;
-            margin: 2px 0;
+            font-size: 1rem;
+            margin-bottom: 2px;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+        }
+
+        .review-message {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #fff;
+            margin-bottom: 2px;
+            line-height: 1.2;
         }
 
         .review-meta {
             font-size: 0.75rem;
-            color: var(--text-muted);
+            color: rgba(255, 255, 255, 0.6);
         }
 
         @media (max-width: 768px) {
@@ -1525,38 +1537,56 @@
 
         // Dynamic Social Proof Notifications - Wrapped in DOMContentLoaded
         document.addEventListener('DOMContentLoaded', () => {
-            const reviews = [
-                { name: "Carlos S.", city: "São Paulo", state: "SP" },
-                { name: "Ana M.", city: "Rio de Janeiro", state: "RJ" },
-                { name: "Roberto O.", city: "Belo Horizonte", state: "MG" },
-                { name: "Fernanda L.", city: "Curitiba", state: "PR" },
-                { name: "Ricardo P.", city: "Porto Alegre", state: "RS" },
-                { name: "Juliana T.", city: "Salvador", state: "BA" },
-                { name: "Marcos A.", city: "Recife", state: "PE" },
-                { name: "Beatriz C.", city: "Brasília", state: "DF" },
-                { name: "Eduardo V.", city: "Fortaleza", state: "CE" },
-                { name: "Camila R.", city: "Florianópolis", state: "SC" }
+            const locations = [
+                { city: "São Paulo", state: "SP" },
+                { city: "Rio de Janeiro", state: "RJ" },
+                { city: "Belo Horizonte", state: "MG" },
+                { city: "Curitiba", state: "PR" },
+                { city: "Porto Alegre", state: "RS" },
+                { city: "Salvador", state: "BA" },
+                { city: "Recife", state: "PE" },
+                { city: "Brasília", state: "DF" },
+                { city: "Fortaleza", state: "CE" },
+                { city: "Florianópolis", state: "SC" }
             ];
 
+            const ratingMessages = {
+                1: { text: "Sentimos muito! Vamos melhorar.", emoji: "😠" },
+                2: { text: "Obrigado. Faremos melhor na próxima.", emoji: "☹️" },
+                3: { text: "Agradecemos o seu feedback!", emoji: "🙂" },
+                4: { text: "Que bom que gostou! Obrigado.", emoji: "😄" },
+                5: { text: "Uau! Muito obrigado pelo carinho! 💙", emoji: "🤩" }
+            };
+
             const notification = document.getElementById('review-notification');
-            const notifName = document.getElementById('notif-name');
+            const notifEmoji = document.getElementById('notif-emoji');
+            const notifStars = document.getElementById('notif-stars');
+            const notifMessage = document.getElementById('notif-message');
             const notifLocation = document.getElementById('notif-location');
             const notifTime = document.getElementById('notif-time');
 
             if (!notification) return;
 
             function showNotification() {
-                // Select random review
-                const review = reviews[Math.floor(Math.random() * reviews.length)];
+                // Select random location
+                const location = locations[Math.floor(Math.random() * locations.length)];
 
-                // Random time between 2 min and 5 hours ago (simulated simplistic logic or just "Agora" for immediate effect)
-                // User asked for "data e hora atual", so let's use actual formatted time
+                // Select random rating (1-5)
+                const rating = Math.floor(Math.random() * 5) + 1;
+                const feedback = ratingMessages[rating];
+
+                // Generate stars string
+                const stars = "⭐".repeat(rating);
+
+                // Actual formatted time
                 const now = new Date();
                 const timeString = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
 
-                notifName.textContent = review.name;
-                notifLocation.textContent = `${review.city} - ${review.state}`;
-                notifTime.textContent = timeString;
+                if (notifEmoji) notifEmoji.textContent = feedback.emoji;
+                if (notifStars) notifStars.textContent = stars;
+                if (notifMessage) notifMessage.textContent = feedback.text;
+                if (notifLocation) notifLocation.textContent = `${location.city} - ${location.state}`;
+                if (notifTime) notifTime.textContent = timeString;
 
                 // Show
                 notification.classList.add('active');
@@ -1582,14 +1612,12 @@
     </script>
     <!-- Review Notification -->
     <div id="review-notification" class="review-notification">
-        <div class="review-avatar">✅</div>
+        <div class="review-emoji" id="notif-emoji">🤩</div>
         <div class="review-content">
-            <div class="review-title">Nova avaliação recebida!</div>
-            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <div class="review-stars" id="notif-stars">⭐⭐⭐⭐⭐</div>
+            <div class="review-message" id="notif-message">Uau! Muito obrigado pelo carinho! 💙</div>
             <div class="review-meta">
-                <span id="notif-name">Cliente</span> de <span id="notif-location">Cidade - UF</span>
-                <br>
-                <small id="notif-time">00:00</small>
+                <span id="notif-location">Cidade - UF</span> • <small id="notif-time">00:00</small>
             </div>
         </div>
     </div>
