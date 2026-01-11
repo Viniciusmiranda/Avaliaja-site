@@ -1537,13 +1537,14 @@
 
         .calc-btn {
             width: 100%;
+            max-width: 400px;
             padding: 1rem;
             font-size: 1.2rem;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            margin-bottom: 2rem;
+            margin: 0 auto 2rem auto;
         }
 
         .result-box {
@@ -1667,7 +1668,7 @@
                 <li><a href="#pricing">Preços</a></li>
                 <li><a href="#contact">Contato</a></li>
             </ul>
-            <a href="http://app.avaliaja.app.br" class="cta-button">Entrar</a>
+            <a href="http://app.avaliaja.app.br" class="cta-button">Área do Gestor</a>
             <!-- Mobile Login Icon -->
             <a href="http://app.avaliaja.app.br" class="mobile-login-btn" style="display: none;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -1945,7 +1946,7 @@
                 <label for="monthlyRevenue">Faturamento Mensal Estimado</label>
                 <div class="input-wrapper">
                     <span>R$</span>
-                    <input type="number" id="monthlyRevenue" placeholder="50.000,00">
+                    <input type="text" id="monthlyRevenue" placeholder="50.000">
                 </div>
             </div>
 
@@ -2091,7 +2092,8 @@
             </details>
             <details class="faq-item">
                 <summary>Como recebo os alertas?</summary>
-                <p>Os alertas de avaliações ruins chegam instantaneamente no seu WhatsApp configurado e sim pode receber no seu grupo de gestão/RH.</p>
+                <p>Os alertas de avaliações ruins chegam instantaneamente no seu WhatsApp configurado e sim pode receber
+                    no seu grupo de gestão/RH.</p>
             </details>
             <details class="faq-item">
                 <summary>Posso exportar os dados?</summary>
@@ -2099,11 +2101,13 @@
             </details>
             <details class="faq-item">
                 <summary>Oferecem suporte técnico?</summary>
-                <p>Sim, temos uma equipe de suporte dedicada via WhatsApp e Email para todos os planos, porém é prioritário para assinantes.</p>
+                <p>Sim, temos uma equipe de suporte dedicada via WhatsApp e Email para todos os planos, porém é
+                    prioritário para assinantes.</p>
             </details>
             <details class="faq-item">
                 <summary>Posso integrar com o sistema?</summary>
-                <p>Atualmente temos integrações com diversos sistemas, mas temos soluções para vários tipos de integração como Webhook, API, WebScraping, Extensão Chrome e entre outros.</p>
+                <p>Atualmente temos integrações com diversos sistemas, mas temos soluções para vários tipos de
+                    integração como Webhook, API, WebScraping, Extensão Chrome e entre outros.</p>
             </details>
         </div>
     </section>
@@ -2411,9 +2415,21 @@
         const calcBtn = document.getElementById('calcBtn');
         const lossResult = document.getElementById('lossResult');
 
+        if (monthlyRevenueInput) {
+            monthlyRevenueInput.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, ''); // Remove regex non-digits
+                value = (Number(value)).toLocaleString('pt-BR'); // Add dots
+                if (value === '0') value = '';
+                e.target.value = value;
+            });
+        }
+
         if (calcBtn) {
             calcBtn.addEventListener('click', () => {
-                const revenue = parseFloat(monthlyRevenueInput.value);
+                // Remove dots to parse number
+                let rawValue = monthlyRevenueInput.value.replace(/\./g, '');
+                const revenue = parseFloat(rawValue);
+
                 if (revenue) {
                     // Assuming 5% churn/loss due to bad service (common metric)
                     const loss = revenue * 0.05;
