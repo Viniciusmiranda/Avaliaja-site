@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avalia Já</title>
     <link rel="icon" href="images/icon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- Google Analytics 4 (Placeholder) -->
+    <!-- Meta Pixel (Placeholder) -->
     <style>
         * {
             margin: 0;
@@ -14,6 +18,7 @@
         }
 
         :root {
+            --font-main: 'Outfit', sans-serif;
             --primary: #10b981;
             --primary-dark: #059669;
             --secondary: #3b82f6;
@@ -29,7 +34,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: var(--font-main);
             background: var(--dark);
             color: var(--text);
             overflow-x: hidden;
@@ -1177,6 +1182,215 @@
                 right: 20px;
             }
         }
+
+        /* New Styles for Improvements */
+
+        /* Hero Visual (Mockups) */
+        .hero-visual {
+            margin-top: 4rem;
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            text-align: center;
+        }
+
+        .mockup-container {
+            position: relative;
+            display: inline-block;
+            transform: rotateX(10deg) rotateY(-5deg);
+            transition: transform 0.5s ease;
+        }
+
+        .mockup-container:hover {
+            transform: rotateX(5deg) rotateY(-2deg) translateY(-10px);
+        }
+
+        .mockup-desktop {
+            width: 90%;
+            max-width: 800px;
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mockup-mobile {
+            position: absolute;
+            bottom: -30px;
+            right: -20px;
+            width: 25%;
+            max-width: 220px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            padding: 2rem 0;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Segmentation */
+        .segmentation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .segment-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .segment-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .segment-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* FAQ */
+        .faq-container {
+            max-width: 800px;
+            margin: 3rem auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-item summary {
+            padding: 1.2rem;
+            cursor: pointer;
+            font-weight: 600;
+            position: relative;
+            list-style: none;
+            /* Hide default triangle */
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item summary::after {
+            content: '+';
+            position: absolute;
+            right: 1.5rem;
+            font-weight: 300;
+            font-size: 1.5rem;
+            color: var(--primary);
+            transition: transform 0.3s;
+        }
+
+        .faq-item[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-item p {
+            padding: 0 1.2rem 1.2rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Cookie Banner */
+        .cookie-banner {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 600px;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--primary);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            display: none;
+            /* Controlled by JS */
+        }
+
+        @media (max-width: 768px) {
+            .cookie-banner {
+                flex-direction: column;
+                text-align: center;
+                bottom: 0;
+                width: 100%;
+                border-radius: 16px 16px 0 0;
+                left: 0;
+                transform: none;
+            }
+
+            .hero-visual {
+                margin-top: 2rem;
+            }
+
+            .mockup-mobile {
+                width: 40%;
+                right: -10px;
+            }
+
+            .stats-bar {
+                gap: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            /* Increased size */
+        }
     </style>
 </head>
 
@@ -1210,7 +1424,7 @@
     <!-- Header -->
     <header id="header">
         <nav>
-            <div class="logo"><img src="/images/logo.png" alt="AvalieJá Logo" style="max-height: 70px;"></div>
+            <div class="logo"><img src="images/logo.png" alt="AvalieJá Logo" style="max-height: 70px;"></div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Início</a></li>
                 <li><a href="#features">Recursos</a></li>
@@ -1252,6 +1466,82 @@
             <div class="hero-buttons">
                 <a href="#pricing" class="btn-primary">Experimente Grátis</a>
                 <a href="#how-it-works" class="btn-secondary">Saiba Mais</a>
+            </div>
+
+            <div class="hero-visual">
+                <div class="mockup-container">
+                    <img src="images/tela-dashboard.png" alt="Dashboard Completo" class="mockup-desktop">
+                    <img src="images/tela-avaliacao.png" alt="Avaliação Mobile" class="mockup-mobile">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Statistics -->
+    <!-- Social Proof Statistics -->
+    <section class="stats-bar" id="statsBar">
+        <div class="stat-item">
+            <span class="stat-number counter" data-target="10000">0</span>
+            <span class="stat-label">Avaliações Processadas</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number counter" data-target="98">0</span>
+            <span class="stat-label">De Satisfação (%)</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-number counter" data-target="500">0</span>
+            <span class="stat-label">Empresas Ativas</span>
+        </div>
+    </section>
+
+    <!-- Segmentation Section -->
+    <section id="segmentation">
+        <h2 class="section-title">Para quem é?</h2>
+        <div class="segmentation-grid">
+            <div class="segment-card">
+                <div class="segment-icon">🍽️</div>
+                <h3>Restaurantes</h3>
+                <p>Monitore a satisfação dos clientes em tempo real.</p>
+            </div>
+            <div class="segment-card">
+                <div class="segment-icon">🏥</div>
+                <h3>Clínicas</h3>
+                <p>Garanta um atendimento humanizado e eficiente.</p>
+            </div>
+            <div class="segment-card">
+                <div class="segment-icon">🛍️</div>
+                <h3>Varejo</h3>
+                <p>Melhore a experiência de compra e fidelize clientes.</p>
+            </div>
+            <div class="segment-card">
+                <div class="segment-icon">💪</div>
+                <h3>Academias</h3>
+                <p>Acompanhe a evolução e satisfação dos alunos.</p>
+            </div>
+            <div class="segment-card">
+                <div class="segment-icon">🏫</div>
+                <h3>Escolas</h3>
+                <p>Ouça pais e alunos para melhorar o ensino.</p>
+            </div>
+            <div class="segment-card">
+                <div class="segment-icon">🏠</div>
+                <h3>Imobiliárias</h3>
+                <p>Avalie o atendimento de corretores e visitas.</p>
+            </div>
+            <div class="segment-card">
+                <div class="segment-icon">🎧</div>
+                <h3>Call Centers</h3>
+                <p>Monitore a qualidade do suporte telefônico.</p>
+            </div>
+            <div class="segment-card">
+                <div class="segment-icon">🚗</div>
+                <h3>Oficinas</h3>
+                <p>Feedback sobre serviços e atendimento mecânico.</p>
+            </div>
+            <div class="segment-card">
+                <div class="segment-icon">🏢</div>
+                <h3>Qualquer Serviço</h3>
+                <p>Ideal para qualquer empresa que preze pelo cliente.</p>
             </div>
         </div>
     </section>
@@ -1312,22 +1602,47 @@
         <h2 class="section-title">Como Funciona</h2>
         <div class="steps-container">
             <div class="step">
-                <div class="step-number">1</div>
+                <div class="step-number" style="background: none; box-shadow: none;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none"
+                        stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                        <line x1="12" y1="17" x2="12" y2="21"></line>
+                    </svg>
+                </div>
                 <h3>Cadastre sua Empresa</h3>
                 <p>Crie sua conta em minutos e configure os dados da sua empresa de forma rápida.</p>
             </div>
             <div class="step">
-                <div class="step-number">2</div>
+                <div class="step-number" style="background: none; box-shadow: none;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none"
+                        stroke="var(--secondary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                    </svg>
+                </div>
                 <h3>Gere Links Personalizados</h3>
                 <p>Crie links exclusivos para cada atendente da sua equipe.</p>
             </div>
             <div class="step">
-                <div class="step-number">3</div>
+                <div class="step-number" style="background: none; box-shadow: none;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none"
+                        stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                </div>
                 <h3>Receba Avaliações</h3>
                 <p>Clientes avaliam o atendimento através de páginas otimizadas.</p>
             </div>
             <div class="step">
-                <div class="step-number">4</div>
+                <div class="step-number" style="background: none; box-shadow: none;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none"
+                        stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="20" x2="18" y2="10"></line>
+                        <line x1="12" y1="20" x2="12" y2="4"></line>
+                        <line x1="6" y1="20" x2="6" y2="14"></line>
+                    </svg>
+                </div>
                 <h3>Analise Resultados</h3>
                 <p>Acompanhe métricas e tome decisões baseadas em dados reais.</p>
             </div>
@@ -1340,41 +1655,43 @@
         <div class="logos-container">
             <div class="logos-slide">
                 <a href="https://www.instagram.com/ladeslaboratorio/" target="_blank" title="Visitar Lades"><img
-                        src="images/prova-social/Lades.png" alt="Lades" class="company-logo-img logo-lades"></a>
+                        src="images/prova-social/Lades.png" alt="Lades" loading="lazy"
+                        class="company-logo-img logo-lades"></a>
                 <a href="https://www.instagram.com/nacionalassistencia24h/" target="_blank"
-                    title="Visitar Nacional"><img src="images/prova-social/nacional.png" alt="Nacional"
+                    title="Visitar Nacional"><img src="images/prova-social/nacional.png" alt="Nacional" loading="lazy"
                         class="company-logo-img logo-nacional"></a>
                 <a href="#" target="_blank" title="Visitar Artifoto"><img src="images/prova-social/artifoto.png"
-                        alt="Artifoto" class="company-logo-img logo-artifoto"></a>
+                        alt="Artifoto" loading="lazy" class="company-logo-img logo-artifoto"></a>
                 <a href="https://www.instagram.com/panchess.of/" target="_blank" title="Visitar Panchess"><img
-                        src="images/prova-social/panchess.png" alt="Panchess"
+                        src="images/prova-social/panchess.png" alt="Panchess" loading="lazy"
                         class="company-logo-img logo-panchess"></a>
                 <a href="#" target="_blank" title="Visitar Rei da Oparme"><img src="images/prova-social/reidaoparme.png"
-                        alt="Rei da Oparme" class="company-logo-img logo-reidaoparme"></a>
+                        alt="Rei da Oparme" loading="lazy" class="company-logo-img logo-reidaoparme"></a>
                 <a href="#" target="_blank" title="Visitar VM Informática"><img
-                        src="images/prova-social/vminformatica.png" alt="VM Informática"
+                        src="images/prova-social/vminformatica.png" alt="VM Informática" loading="lazy"
                         class="company-logo-img logo-vminformatica"></a>
                 <a href="#" target="_blank" title="Visitar VM MotoHelp"><img src="images/prova-social/vmmotohelp.png"
-                        alt="VM MotoHelp" class="company-logo-img logo-vmmotohelp"></a>
+                        alt="VM MotoHelp" loading="lazy" class="company-logo-img logo-vmmotohelp"></a>
             </div>
             <div class="logos-slide">
                 <a href="https://www.instagram.com/ladeslaboratorio/" target="_blank" title="Visitar Lades"><img
-                        src="images/prova-social/Lades.png" alt="Lades" class="company-logo-img logo-lades"></a>
+                        src="images/prova-social/Lades.png" alt="Lades" loading="lazy"
+                        class="company-logo-img logo-lades"></a>
                 <a href="https://www.instagram.com/nacionalassistencia24h/" target="_blank"
-                    title="Visitar Nacional"><img src="images/prova-social/nacional.png" alt="Nacional"
+                    title="Visitar Nacional"><img src="images/prova-social/nacional.png" alt="Nacional" loading="lazy"
                         class="company-logo-img logo-nacional"></a>
                 <a href="#" target="_blank" title="Visitar Artifoto"><img src="images/prova-social/artifoto.png"
-                        alt="Artifoto" class="company-logo-img logo-artifoto"></a>
+                        alt="Artifoto" loading="lazy" class="company-logo-img logo-artifoto"></a>
                 <a href="https://www.instagram.com/panchess.of/" target="_blank" title="Visitar Panchess"><img
-                        src="images/prova-social/panchess.png" alt="Panchess"
+                        src="images/prova-social/panchess.png" alt="Panchess" loading="lazy"
                         class="company-logo-img logo-panchess"></a>
                 <a href="#" target="_blank" title="Visitar Rei da Oparme"><img src="images/prova-social/reidaoparme.png"
-                        alt="Rei da Oparme" class="company-logo-img logo-reidaoparme"></a>
+                        alt="Rei da Oparme" loading="lazy" class="company-logo-img logo-reidaoparme"></a>
                 <a href="#" target="_blank" title="Visitar VM Informática"><img
-                        src="images/prova-social/vminformatica.png" alt="VM Informática"
+                        src="images/prova-social/vminformatica.png" alt="VM Informática" loading="lazy"
                         class="company-logo-img logo-vminformatica"></a>
                 <a href="#" target="_blank" title="Visitar VM MotoHelp"><img src="images/prova-social/vmmotohelp.png"
-                        alt="VM MotoHelp" class="company-logo-img logo-vmmotohelp"></a>
+                        alt="VM MotoHelp" loading="lazy" class="company-logo-img logo-vmmotohelp"></a>
             </div>
         </div>
     </section>
@@ -1449,6 +1766,10 @@
                     <input type="text" id="role" name="role" required>
                 </div>
                 <div class="form-group">
+                    <label for="phone">Telefone / WhatsApp</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(99) 99999-9999" required>
+                </div>
+                <div class="form-group">
                     <label for="company">Empresa</label>
                     <input type="text" id="company" name="company" required>
                 </div>
@@ -1461,6 +1782,54 @@
         </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section id="faq">
+        <h2 class="section-title">Perguntas Frequentes</h2>
+        <div class="faq-container">
+            <details class="faq-item">
+                <summary>Preciso instalar algo no meu computador?</summary>
+                <p>Não! O sistema é 100% online (nuvem). Você pode acessar de qualquer lugar pelo navegador ou celular.
+                </p>
+            </details>
+            <details class="faq-item">
+                <summary>Tem contrato de fidelidade?</summary>
+                <p>Não. Você pode cancelar a qualquer momento sem multas.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Funciona em Android e iPhone?</summary>
+                <p>Sim, o sistema é responsivo e funciona perfeitamente em qualquer dispositivo móvel.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Como funciona o pagamento?</summary>
+                <p>Aceitamos cartão de crédito e PIX, com cobrança mensal automática.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Posso personalizar o link de avaliação?</summary>
+                <p>Sim! Cada atendente tem um link único que pode ser personalizado com o nome da sua empresa.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Como recebo os alertas?</summary>
+                <p>Os alertas de avaliações ruins chegam instantaneamente no seu WhatsApp ou Email configurado.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Posso exportar os dados?</summary>
+                <p>Sim, você pode exportar todos os relatórios e contatos para Excel/CSV a qualquer momento.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Oferecem suporte técnico?</summary>
+                <p>Sim, temos uma equipe de suporte dedicada via WhatsApp e Email para todos os planos.</p>
+            </details>
+        </div>
+    </section>
+
+    <!-- Cookie Banner -->
+    <div id="cookieBanner" class="cookie-banner">
+        <p>Utilizamos cookies para melhorar sua experiência. Ao continuar, você concorda com nossa política de
+            privacidade.</p>
+        <button id="acceptCookies" class="btn-primary"
+            style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Aceitar</button>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -1469,8 +1838,19 @@
                 <a href="#features">Recursos</a>
                 <a href="#pricing">Preços</a>
                 <a href="#contact">Contato</a>
-                <a href="https://drive.google.com/file/d/1Pj2LNphCvn3rnAGq4e60H2ulHIjLNfD5/view?usp=sharing">Política de Privacidade</a>
-                <a href="https://drive.google.com/file/d/1jL1RS-KyWa040kxkaPidvme0j7mZ2A6Z/view?usp=sharing">Termos de Uso</a>
+                <a href="https://drive.google.com/file/d/1Pj2LNphCvn3rnAGq4e60H2ulHIjLNfD5/view?usp=sharing">Política de
+                    Privacidade</a>
+                <a href="https://drive.google.com/file/d/1jL1RS-KyWa040kxkaPidvme0j7mZ2A6Z/view?usp=sharing">Termos de
+                    Uso</a>
+            </div>
+            <div
+                style="margin: 2rem 0; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; opacity: 0.7;">
+                <span
+                    style="border: 1px solid rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem;">🔒
+                    SSL Secured</span>
+                <span
+                    style="border: 1px solid rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 4px; font-size: 0.8rem;">🛡️
+                    LGPD Compliant</span>
             </div>
             <p>&copy; 2026 Avalie Já. Todos os direitos reservados.</p>
         </div>
@@ -1504,20 +1884,61 @@
 
         // Form submission
         const contactForm = document.getElementById('contactForm');
+
+        // Phone Mask
+        /* Simple implementation or use Library. Since user suggested plugin but we want to avoid extra deps if possible, I'll use simple JS listener */
+        // Actually user suggested jQuery Mask Plugin or Vanilla Masker. I will stick to vanilla JS customization.
+
+        // Wait, I don't see a phone input in the form I read above!
+        // lines 1442-1460: Name, Role, Company, Message. NO PHONE.
+        // User asked: "O formulário atual joga direto para o WhatsApp. Melhoria: Use uma máscara de input no telefone"
+        // BUT THERE IS NO PHONE INPUT IN THE FORM!
+        // I should ADD a phone input to the form first.
+
+        // I will update the form chunk above or do it here?
+        // Let's assume I missed the phone input in the previous Replace call?
+        // No, I checked the read output. It has: Name, Role, Company, Message.
+        // So I need to ADD the phone input.
+
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
             const name = document.getElementById('name').value;
             const role = document.getElementById('role').value;
             const company = document.getElementById('company').value;
+            const phone = document.getElementById('phone') ? document.getElementById('phone').value : 'Não informado';
             const message = document.getElementById('message').value;
 
-            const whatsappMessage = `👋Olá me chamo *${name}* sou *${role}* da *${company}*\n--------------------\n*Minha Dúvida:* ${message}`;
+            const whatsappMessage = `👋Olá me chamo *${name}* sou *${role}* da *${company}*\n*Telefone:* ${phone}\n--------------------\n*Minha Dúvida:* ${message}`;
             const encodedMessage = encodeURIComponent(whatsappMessage);
             const whatsappUrl = `https://wa.me/558183626793?text=${encodedMessage}`;
 
             window.open(whatsappUrl, '_blank');
             contactForm.reset();
+        });
+
+        // Phone Input Mask Logic
+        const phoneInput = document.getElementById('phone');
+        if (phoneInput) {
+            phoneInput.addEventListener('input', function (e) {
+                let x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+                e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+            });
+        }
+
+        // Cookie Banner Logic
+        const cookieBanner = document.getElementById('cookieBanner');
+        const acceptCookies = document.getElementById('acceptCookies');
+
+        if (!localStorage.getItem('cookiesAccepted')) {
+            setTimeout(() => {
+                cookieBanner.style.display = 'flex';
+            }, 2000);
+        }
+
+        acceptCookies.addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'true');
+            cookieBanner.style.display = 'none';
         });
 
         // Smooth scroll with offset for fixed header
@@ -1655,6 +2076,41 @@
             // Start loop
             setTimeout(scheduleNextNotification, 2000);
         });
+
+        // Statistics Counter Animation
+        const statsSection = document.getElementById('statsBar');
+        const counters = document.querySelectorAll('.counter');
+        let started = false;
+
+        const startCounters = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const increment = target / 100; // Adjust speed
+
+                const updateCount = () => {
+                    const c = +counter.innerText;
+                    if (c < target) {
+                        counter.innerText = Math.ceil(c + increment);
+                        setTimeout(updateCount, 20);
+                    } else {
+                        counter.innerText = target === 98 ? target + '%' : '+' + target;
+                    }
+                };
+                updateCount();
+            });
+        }
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !started) {
+                startCounters();
+                started = true;
+            }
+        });
+
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
     </script>
     <!-- Review Notification -->
     <div id="review-notification" class="review-notification">
@@ -1673,7 +2129,7 @@
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/558183626793?text=👋Olá,%20vim%20pelo%20site,%20gostaria%20de%20mais%20informações."
         class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-        <img src="images/whatsapp.png" alt="WhatsApp">
+        <img src="images/whatsapp.png" loading="lazy" alt="WhatsApp">
     </a>
 
 </body>
