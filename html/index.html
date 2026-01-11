@@ -979,10 +979,7 @@
             animation: slide 35s linear infinite;
         }
 
-        .logos-slide:hover {
-            /* Removed pause on hover as requested */
-            /* animation-play-state: paused; */
-        }
+
 
         /* Company Logo Styling */
         .company-logo-img {
@@ -1627,6 +1624,208 @@
             color: var(--text-muted);
             cursor: pointer;
         }
+
+        /* Pain Points Section */
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pain-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            /* Red tint border */
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pain-card:hover {
+            transform: translateY(-5px);
+            background: rgba(239, 68, 68, 0.05);
+            border-color: rgba(239, 68, 68, 0.6);
+            box-shadow: 0 10px 30px rgba(239, 68, 68, 0.1);
+        }
+
+        .pain-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.2));
+        }
+
+        .pain-card h3 {
+            color: #fca5a5;
+            /* Light red */
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .pain-card p {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* WhatsApp Mockup Simulation */
+        .whatsapp-mockup-wrapper {
+            margin-bottom: 4rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .whatsapp-device {
+            width: 100%;
+            max-width: 380px;
+            background: #0b141a;
+            border-radius: 30px;
+            border: 8px solid #1f2c34;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            position: relative;
+        }
+
+        .whatsapp-header {
+            background: #202c33;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .wa-profile-pic {
+            width: 40px;
+            height: 40px;
+            background: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .wa-contact-info h4 {
+            font-size: 1rem;
+            margin: 0;
+            color: #e9edef;
+        }
+
+        .wa-contact-info span {
+            font-size: 0.75rem;
+            color: #8696a0;
+        }
+
+        .whatsapp-body {
+            height: 350px;
+            background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
+            background-size: cover;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            overflow: hidden;
+        }
+
+        .message-bubble {
+            max-width: 80%;
+            padding: 8px 12px;
+            border-radius: 8px;
+            position: relative;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .message-incoming {
+            background: #202c33;
+            color: #e9edef;
+            align-self: flex-start;
+            border-top-left-radius: 0;
+            animation: messageAppear 0.5s forwards ease-out;
+        }
+
+        .message-outgoing {
+            background: #005c4b;
+            color: #e9edef;
+            align-self: flex-end;
+            border-top-right-radius: 0;
+            animation: messageAppear 0.5s forwards ease-out;
+        }
+
+        .message-time {
+            display: block;
+            text-align: right;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 4px;
+        }
+
+        .typing-indicator {
+            align-self: flex-start;
+            background: #202c33;
+            padding: 8px 12px;
+            border-radius: 15px;
+            border-top-left-radius: 0;
+            display: none;
+            /* Shown via JS/Animation */
+            gap: 5px;
+            width: fit-content;
+        }
+
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            background: #8696a0;
+            border-radius: 50%;
+            animation: typingBounce 1.4s infinite ease-in-out both;
+        }
+
+        .typing-dot:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+
+        .alert-badge {
+            display: inline-block;
+            background: #ef4444;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        @keyframes messageAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes typingBounce {
+
+            0%,
+            80%,
+            100% {
+                transform: scale(0);
+            }
+
+            40% {
+                transform: scale(1);
+            }
+        }
     </style>
 </head>
 
@@ -1695,10 +1894,10 @@
                 <span class="star">⭐</span>
                 <span class="star">⭐</span>
             </div>
-            <h1>Transforme Feedback em Qualidade Operacional</h1>
-            <p>Plataforma para gestão de avaliações de atendimento com dashboards inteligentes e relatórios
-                detalhados. Monitore atendentes em tempo real, receba alertas críticos e tome decisões baseadas em
-                dados.</p>
+            <h1>Não Deixe o Mau Atendimento <br> <span style="color: var(--primary);">Falir Sua Empresa</span></h1>
+            <p>O Avalie Já é o 'olho do dono' digital. Monitore sua equipe em tempo real, identifique falhas
+                operacionais
+                e impeça que clientes insatisfeitos destruam sua reputação online.</p>
             <div class="hero-buttons">
                 <a href="#pricing" class="btn-primary">Experimente Grátis</a>
                 <a href="#how-it-works" class="btn-secondary">Saiba Mais</a>
@@ -1709,6 +1908,32 @@
                     <img src="images/tela-dashboard.png" alt="Dashboard Completo" class="mockup-desktop">
                     <img src="images/tela-avaliacao.png" alt="Avaliação Mobile" class="mockup-mobile">
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain Points Section (New) -->
+    <section id="pain-points" style="min-height: auto; padding: 4rem 2rem;">
+        <h2 class="section-title" style="margin-bottom: 3rem;">Você sabe como seu cliente é tratado <span
+                style="color: #ef4444;">quando você não está?</span></h2>
+        <div class="pain-grid">
+            <div class="pain-card">
+                <div class="pain-icon">🙈</div>
+                <h3>Cegueira Gerencial</h3>
+                <p>Seus melhores funcionários desmotivados e os piores afastando clientes, tudo acontecendo sem você
+                    saber.</p>
+            </div>
+            <div class="pain-card">
+                <div class="pain-icon">📢</div>
+                <h3>A Reclamação Pública</h3>
+                <p>Um cliente insatisfeito não fala para você, ele fala para o Google e Instagram, destruindo sua
+                    reputação.</p>
+            </div>
+            <div class="pain-card">
+                <div class="pain-icon">💸</div>
+                <h3>Lucro Invisível</h3>
+                <p>Quanto dinheiro você perde por mês com clientes que nunca mais voltam por causa de um atendimento
+                    ruim?</p>
             </div>
         </div>
     </section>
@@ -1787,6 +2012,39 @@
     <!-- Features Section -->
     <section id="features">
         <h2 class="section-title">Recursos Poderosos</h2>
+
+        <!-- WhatsApp Simulation Feature (New) -->
+        <div class="whatsapp-mockup-wrapper">
+            <div class="whatsapp-device">
+                <div class="whatsapp-header">
+                    <div class="wa-profile-pic">AJ</div>
+                    <div class="wa-contact-info">
+                        <h4>Avalia Já - Alertas</h4>
+                        <span>online</span>
+                    </div>
+                </div>
+                <div class="whatsapp-body">
+                    <div class="message-bubble message-incoming" style="animation-delay: 0.5s;">
+                        <span class="alert-badge">ALERTA CRÍTICO</span><br>
+                        <strong>Nova Avaliação:</strong> ⭐ 1/5<br>
+                        <strong>Cliente:</strong> Anônimo<br>
+                        <strong>Motivo:</strong> "Atendente foi rude e demorou muito."
+                        <span class="message-time">10:42</span>
+                    </div>
+
+                    <div class="typing-indicator" style="animation: fadeIn 0.5s forwards 2.5s; display: flex;">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+
+                    <div class="message-bubble message-outgoing" style="animation-delay: 4.5s;">
+                        Vou ligar para a loja agora e verificar isso! 😡
+                        <span class="message-time">10:43</span>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">🔗</div>
