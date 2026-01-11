@@ -1971,16 +1971,16 @@
     <section id="pricing">
         <h2 class="section-title">Planos e Preços</h2>
 
-        <!-- Pricing Toggle (Temporarily Disabled)
+        <!-- Pricing Toggle -->
         <div class="pricing-toggle-container">
             <span class="toggle-label">Mensal</span>
             <label class="switch">
                 <input type="checkbox" id="pricingToggle">
                 <span class="slider round"></span>
             </label>
-            <span class="toggle-label">Anual <span class="discount-badge">20% OFF</span></span>
+            <span class="toggle-label">Anual <span class="discount-badge" style="background: #22c55e; color: #fff;">50%
+                    OFF</span></span>
         </div>
-        -->
 
         <div class="pricing-grid">
             <div class="pricing-card">
@@ -2001,7 +2001,7 @@
 
             <div class="pricing-card featured">
                 <h3 class="plan-name">Pequenas empresas</h3>
-                <div class="plan-price" id="price-small">R$ 19,90<span id="period-small">/mês</span></div>
+                <div class="plan-price" id="price-small">R$ 39,90<span id="period-small">/mês</span></div>
                 <p class="plan-description">Ideal para empresas em crescimento</p>
                 <ul class="plan-features">
                     <li>Até 20 atendentes</li>
@@ -2018,7 +2018,7 @@
 
             <div class="pricing-card">
                 <h3 class="plan-name">Grandes empresas</h3>
-                <div class="plan-price" id="price-large">R$ 49,90<span id="period-large">/mês</span></div>
+                <div class="plan-price" id="price-large">R$ 99,90<span id="period-large">/mês</span></div>
                 <p class="plan-description">Solução completa para grandes empresas</p>
                 <ul class="plan-features">
                     <li>Atendentes ilimitados</li>
@@ -2397,15 +2397,15 @@
         if (pricingToggle) {
             pricingToggle.addEventListener('change', () => {
                 if (pricingToggle.checked) {
-                    // Annual (20% OFF)
-                    // Small: 19.90 * 0.8 = 15.92 -> 15,90
-                    priceSmall.innerHTML = 'R$ 15,90<span id="period-small">/mês*</span>';
-                    // Large: 49.90 * 0.8 = 39.92 -> 39,90
-                    priceLarge.innerHTML = 'R$ 39,90<span id="period-large">/mês*</span>';
+                    // Annual (50% OFF - Current "Cheap" Price)
+                    priceSmall.innerHTML = 'R$ 19,90<span id="period-small">/mês*</span>';
+                    pageSmallPeriod = document.getElementById('period-small'); // Re-select if replaced
+
+                    priceLarge.innerHTML = 'R$ 49,90<span id="period-large">/mês*</span>';
                 } else {
-                    // Monthly
-                    priceSmall.innerHTML = 'R$ 19,90<span id="period-small">/mês</span>';
-                    priceLarge.innerHTML = 'R$ 49,90<span id="period-large">/mês</span>';
+                    // Monthly (Double Price)
+                    priceSmall.innerHTML = 'R$ 39,90<span id="period-small">/mês</span>';
+                    priceLarge.innerHTML = 'R$ 99,90<span id="period-large">/mês</span>';
                 }
             });
         }
