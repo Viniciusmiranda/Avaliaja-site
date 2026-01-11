@@ -1477,12 +1477,96 @@
         }
 
         .calculator-container {
-            max-width: 500px;
+            max-width: 600px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 16px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            padding: 3rem;
+            border-radius: 24px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .calculator-input-box {
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .calculator-input-box label {
+            display: block;
+            margin-bottom: 0.8rem;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper span {
+            position: absolute;
+            left: 1rem;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1.5rem;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .input-wrapper input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .calc-btn {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .result-box {
+            background: rgba(239, 68, 68, 0.1);
+            /* Red tint */
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .result-box h3 {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .result-note {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            font-style: italic;
         }
 
         .loss-amount {
@@ -1849,21 +1933,36 @@
 
     <!-- ROI Calculator Section -->
     <section id="roi-calculator">
-        <h2 class="section-title">Quanto você está perdendo na mesa?</h2>
-        <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">
-            Estudos mostram que 68% dos clientes deixam uma empresa por mau atendimento. Calcule seu prejuízo potencial.
+        <h2 class="section-title">Quanto você está deixando na mesa?</h2>
+        <p
+            style="text-align: center; color: var(--text-muted); margin-bottom: 2rem; font-size: 1.1rem; max-width: 700px; margin: 0 auto 3rem auto;">
+            Estudos mostram que 68% dos clientes deixam uma empresa por mau atendimento. <br>
+            <small style="opacity: 0.6; font-size: 0.8rem;">(Fonte: U.S. Small Business Administration)</small>
         </p>
+
         <div class="calculator-container">
-            <div class="input-group">
-                <label for="monthlyRevenue">Faturamento Mensal (R$)</label>
-                <input type="number" id="monthlyRevenue" placeholder="Ex: 50000">
+            <div class="calculator-input-box">
+                <label for="monthlyRevenue">Faturamento Mensal Estimado</label>
+                <div class="input-wrapper">
+                    <span>R$</span>
+                    <input type="number" id="monthlyRevenue" placeholder="50.000,00">
+                </div>
             </div>
+
+            <button class="btn-primary calc-btn" id="calcBtn">
+                Calcular Prejuízo
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                    <polyline points="17 6 23 6 23 12"></polyline>
+                </svg>
+            </button>
+
             <div class="result-box">
-                <h3>Prejuízo Estimado:</h3>
+                <h3>Potencial Perdido por Mês:</h3>
                 <div id="lossResult" class="loss-amount">R$ 0,00</div>
-                <p><small>Por mês, devido à clientes insatisfeitos não ouvidos.</small></p>
+                <p class="result-note">Clientes insatisfeitos não reclamam, eles apenas vão embora.</p>
             </div>
-            <button class="btn-primary" id="calcBtn" style="width: 100%; margin-top: 1rem;">Calcular Prejuízo</button>
         </div>
     </section>
 
