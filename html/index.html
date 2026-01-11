@@ -2083,7 +2083,7 @@
             </details>
             <details class="faq-item">
                 <summary>Como funciona o pagamento?</summary>
-                <p>Aceitamos cartão de crédito e PIX, com cobrança mensal automática.</p>
+                <p>Aceitamos cartão de crédito com cobrança mensal automática.</p>
             </details>
             <details class="faq-item">
                 <summary>Posso personalizar o link de avaliação?</summary>
@@ -2091,7 +2091,7 @@
             </details>
             <details class="faq-item">
                 <summary>Como recebo os alertas?</summary>
-                <p>Os alertas de avaliações ruins chegam instantaneamente no seu WhatsApp ou Email configurado.</p>
+                <p>Os alertas de avaliações ruins chegam instantaneamente no seu WhatsApp configurado e sim pode receber no seu grupo de gestão/RH.</p>
             </details>
             <details class="faq-item">
                 <summary>Posso exportar os dados?</summary>
@@ -2099,7 +2099,11 @@
             </details>
             <details class="faq-item">
                 <summary>Oferecem suporte técnico?</summary>
-                <p>Sim, temos uma equipe de suporte dedicada via WhatsApp e Email para todos os planos.</p>
+                <p>Sim, temos uma equipe de suporte dedicada via WhatsApp e Email para todos os planos, porém é prioritário para assinantes.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Posso integrar com o sistema?</summary>
+                <p>Atualmente temos integrações com diversos sistemas, mas temos soluções para vários tipos de integração como Webhook, API, WebScraping, Extensão Chrome e entre outros.</p>
             </details>
         </div>
     </section>
@@ -2166,21 +2170,6 @@
 
         // Form submission
         const contactForm = document.getElementById('contactForm');
-
-        // Phone Mask
-        /* Simple implementation or use Library. Since user suggested plugin but we want to avoid extra deps if possible, I'll use simple JS listener */
-        // Actually user suggested jQuery Mask Plugin or Vanilla Masker. I will stick to vanilla JS customization.
-
-        // Wait, I don't see a phone input in the form I read above!
-        // lines 1442-1460: Name, Role, Company, Message. NO PHONE.
-        // User asked: "O formulário atual joga direto para o WhatsApp. Melhoria: Use uma máscara de input no telefone"
-        // BUT THERE IS NO PHONE INPUT IN THE FORM!
-        // I should ADD a phone input to the form first.
-
-        // I will update the form chunk above or do it here?
-        // Let's assume I missed the phone input in the previous Replace call?
-        // No, I checked the read output. It has: Name, Role, Company, Message.
-        // So I need to ADD the phone input.
 
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
