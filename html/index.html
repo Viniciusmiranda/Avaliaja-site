@@ -1252,6 +1252,7 @@
             font-size: 2.5rem;
             font-weight: 800;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -1401,6 +1402,145 @@
         .stat-number {
             font-size: 4rem;
             /* Increased size */
+        }
+
+        /* Pricing Toggle */
+        .pricing-toggle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: .4s;
+            border-radius: 34px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: var(--primary);
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(26px);
+        }
+
+        .discount-badge {
+            background: #F59E0B;
+            color: #000;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        /* ROI Calculator */
+        #roi-calculator {
+            padding: 4rem 1rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .calculator-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .loss-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ef4444;
+            /* Red for loss */
+            margin: 1rem 0;
+        }
+
+        /* Exit Intent Modal */
+        .exit-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .exit-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .exit-modal {
+            background: var(--bg-dark);
+            border: 1px solid var(--primary);
+            padding: 2rem;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .exit-modal-overlay.active .exit-modal {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
         }
     </style>
 </head>
@@ -1707,9 +1847,40 @@
         </div>
     </section>
 
+    <!-- ROI Calculator Section -->
+    <section id="roi-calculator">
+        <h2 class="section-title">Quanto você está perdendo na mesa?</h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">
+            Estudos mostram que 68% dos clientes deixam uma empresa por mau atendimento. Calcule seu prejuízo potencial.
+        </p>
+        <div class="calculator-container">
+            <div class="input-group">
+                <label for="monthlyRevenue">Faturamento Mensal (R$)</label>
+                <input type="number" id="monthlyRevenue" placeholder="Ex: 50000">
+            </div>
+            <div class="result-box">
+                <h3>Prejuízo Estimado:</h3>
+                <div id="lossResult" class="loss-amount">R$ 0,00</div>
+                <p><small>Por mês, devido à clientes insatisfeitos não ouvidos.</small></p>
+            </div>
+            <button class="btn-primary" id="calcBtn" style="width: 100%; margin-top: 1rem;">Calcular Prejuízo</button>
+        </div>
+    </section>
+
     <!-- Pricing Section -->
     <section id="pricing">
         <h2 class="section-title">Planos e Preços</h2>
+
+        <!-- Pricing Toggle -->
+        <div class="pricing-toggle-container">
+            <span class="toggle-label">Mensal</span>
+            <label class="switch">
+                <input type="checkbox" id="pricingToggle">
+                <span class="slider round"></span>
+            </label>
+            <span class="toggle-label">Anual <span class="discount-badge">20% OFF</span></span>
+        </div>
+
         <div class="pricing-grid">
             <div class="pricing-card">
                 <h3 class="plan-name">Avalie</h3>
@@ -1729,7 +1900,7 @@
 
             <div class="pricing-card featured">
                 <h3 class="plan-name">Pequenas empresas</h3>
-                <div class="plan-price">R$ 19,90<span>/mês</span></div>
+                <div class="plan-price" id="price-small">R$ 19,90<span id="period-small">/mês</span></div>
                 <p class="plan-description">Ideal para empresas em crescimento</p>
                 <ul class="plan-features">
                     <li>Até 20 atendentes</li>
@@ -1746,7 +1917,7 @@
 
             <div class="pricing-card">
                 <h3 class="plan-name">Grandes empresas</h3>
-                <div class="plan-price">R$ 49,90<span>/mês</span></div>
+                <div class="plan-price" id="price-large">R$ 49,90<span id="period-large">/mês</span></div>
                 <p class="plan-description">Solução completa para grandes empresas</p>
                 <ul class="plan-features">
                     <li>Atendentes ilimitados</li>
@@ -2122,7 +2293,110 @@
         if (statsSection) {
             statsObserver.observe(statsSection);
         }
+
+        // Pricing Toggle Logic
+        const pricingToggle = document.getElementById('pricingToggle');
+        const priceSmall = document.getElementById('price-small');
+        const periodSmall = document.getElementById('period-small');
+        const priceLarge = document.getElementById('price-large');
+        const periodLarge = document.getElementById('period-large');
+
+        if (pricingToggle) {
+            pricingToggle.addEventListener('change', () => {
+                if (pricingToggle.checked) {
+                    // Annual (20% OFF)
+                    // Small: 19.90 * 0.8 = 15.92 -> 15,90
+                    priceSmall.innerHTML = 'R$ 15,90<span id="period-small">/mês*</span>';
+                    // Large: 49.90 * 0.8 = 39.92 -> 39,90
+                    priceLarge.innerHTML = 'R$ 39,90<span id="period-large">/mês*</span>';
+                } else {
+                    // Monthly
+                    priceSmall.innerHTML = 'R$ 19,90<span id="period-small">/mês</span>';
+                    priceLarge.innerHTML = 'R$ 49,90<span id="period-large">/mês</span>';
+                }
+            });
+        }
+
+        // ROI Calculator Logic
+        const monthlyRevenueInput = document.getElementById('monthlyRevenue');
+        const calcBtn = document.getElementById('calcBtn');
+        const lossResult = document.getElementById('lossResult');
+
+        if (calcBtn) {
+            calcBtn.addEventListener('click', () => {
+                const revenue = parseFloat(monthlyRevenueInput.value);
+                if (revenue) {
+                    // Assuming 5% churn/loss due to bad service (common metric)
+                    const loss = revenue * 0.05;
+
+                    // Animate number
+                    let start = 0;
+                    const duration = 1000;
+                    const startTime = performance.now();
+
+                    function animate(currentTime) {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+
+                        const currentLoss = loss * progress;
+                        lossResult.innerText = currentLoss.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+                        if (progress < 1) {
+                            requestAnimationFrame(animate);
+                        }
+                    }
+
+                    requestAnimationFrame(animate);
+                } else {
+                    lossResult.innerText = "R$ 0,00";
+                }
+            });
+        }
+
+        // Exit Intent Logic
+        const exitModal = document.getElementById('exitModal');
+        const closeModal = document.querySelector('.close-modal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        const closeExitModal = () => {
+            exitModal.classList.remove('active');
+        };
+
+        if (closeModal) closeModal.addEventListener('click', closeExitModal);
+        if (closeModalBtn) closeModalBtn.addEventListener('click', closeExitModal);
+
+        // Close on clean click outside
+        if (exitModal) {
+            exitModal.addEventListener('click', (e) => {
+                if (e.target === exitModal) closeExitModal();
+            });
+        }
+
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY < 0) {
+                if (!sessionStorage.getItem('exitIntentShown')) {
+                    exitModal.classList.add('active');
+                    sessionStorage.setItem('exitIntentShown', 'true');
+                }
+            }
+        });
     </script>
+    <!-- Exit Intent Modal -->
+    <div class="exit-modal-overlay" id="exitModal">
+        <div class="exit-modal">
+            <span class="close-modal">&times;</span>
+            <h2 style="margin-bottom: 1rem;">🎁 Não vá ainda!</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">
+                Temos uma oferta especial para você. Teste nossa ferramenta por <strong>7 dias totalmente
+                    grátis</strong>. Sem cartão de crédito.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="http://app.avaliaja.app.br/register.html" class="btn-primary">Quero 7 Dias Grátis</a>
+                <button class="btn-secondary" id="closeModalBtn"
+                    style="background: transparent; border: 1px solid rgba(255,255,255,0.2);">Não, obrigado</button>
+            </div>
+        </div>
+    </div>
     <!-- Review Notification -->
     <div id="review-notification" class="review-notification">
         <div class="review-emoji" id="notif-emoji">🤩</div>
