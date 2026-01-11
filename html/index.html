@@ -1234,8 +1234,13 @@
             background: rgba(255, 255, 255, 0.02);
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            margin: 2rem 0;
+            margin: 0;
+            /* Reset margin to rely on padding or manual spacing */
             flex-wrap: wrap;
+            /* Override generic section styles */
+            min-height: auto;
+            padding: 3rem 1rem;
+            max-width: 100%;
         }
 
         .stat-item {
@@ -1263,7 +1268,13 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin-top: 3rem;
+            margin-top: 2rem;
+        }
+
+        #segmentation {
+            padding-top: 2rem;
+            /* Reduce top padding specifically for this section */
+            min-height: auto;
         }
 
         .segment-card {
